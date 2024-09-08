@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display User Details</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Your Entered Details</h1>
+    <div id="userDetails">
+    </div>
+    <a class="back-button" href="index.html">Edit form</a>
+  </div>
+
+  <script>
+    const userDetails = JSON.parse(localStorage.getItem('userDetails'));
+
+    if (userDetails) {
+      const userDetailsDiv = document.getElementById('userDetails');
+      userDetailsDiv.innerHTML = `
+        <p><strong>First Name:</strong> ${userDetails.firstName}</p>
+        <p><strong>Last Name:</strong> ${userDetails.lastName}</p>
+        <p><strong>Email:</strong> ${userDetails.email}</p>
+        <p><strong>Contact Number:</strong> ${userDetails.contact}</p>
+        <p><strong>Education 1:</strong> ${userDetails.education[0]}</p>
+        <p><strong>Education 2:</strong> ${userDetails.education[1]}</p>
+        <p><strong>Experience 1:</strong> ${userDetails.experience[0]}</p>
+        <p><strong>Experience 2:</strong> ${userDetails.experience[1]}</p>
+        <p><strong>Skills:</strong> ${userDetails.skills}</p>
+      `;
+    } else {
+      document.getElementById('userDetails').innerHTML = '<p>No details found. Please fill out the form again.</p>';
+    }
+  </script>
+</body>
+</html>
